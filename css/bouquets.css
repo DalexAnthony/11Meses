@@ -1,0 +1,456 @@
+/* Base Variables and Shared Styles for Bouquets */
+:root {
+    --stem-color: #5c8b54;
+    --stem-brown: #8b5a2b;
+}
+
+.css-bouquet {
+    position: relative;
+    width: 320px;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    animation: gentle-sway 6s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+}
+
+@keyframes gentle-sway {
+    0% { transform: rotate(-3deg); }
+    100% { transform: rotate(3deg); }
+}
+
+.bg-wrap {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+}
+
+.stems-container {
+    position: absolute;
+    bottom: 0px;
+    width: 50px;
+    height: 180px;
+    z-index: 2;
+}
+
+.stem {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--stem-color);
+    border-radius: 3px;
+    box-shadow: inset -2px 0 3px rgba(0,0,0,0.2);
+}
+
+.brown-stems .stem {
+    background: var(--stem-brown);
+}
+
+/* Wrappers & Ties */
+.wrapper.lily-wrapper {
+    position: absolute;
+    bottom: 50px;
+    left: -75px;
+    width: 200px;
+    height: 150px;
+    background: #fdf5f6;
+    border-radius: 10px 10px 100px 100px;
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+.bg-wrap.lily-wrap {
+    background: #fffafa;
+    width: 300px; height: 250px;
+    border-radius: 50% 50% 10px 10px;
+    bottom: 60px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+.ribbon-tie {
+    position: absolute;
+    bottom: 60px;
+    left: 5px;
+    width: 40px;
+    height: 15px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 3;
+}
+
+.cord-tie {
+    position: absolute;
+    bottom: 80px;
+    left: 5px;
+    width: 40px;
+    height: 4px;
+    background: #d2a679;
+    box-shadow: 0 4px 0 #d2a679, 0 8px 0 #c19a6b;
+    z-index: 3;
+}
+
+.bg-wrap.gerbera-wrap {
+    background: #fdfcf0;
+    width: 280px; height: 260px;
+    border-radius: 70% 70% 10px 10px;
+    bottom: 60px;
+    box-shadow: inset 0 -30px 40px #f4e9d8;
+}
+
+.wrapper.gerbera-wrapper {
+    position: absolute;
+    bottom: 0px;
+    left: -45px;
+    width: 140px;
+    height: 180px;
+    background: #fbf9f4;
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+    box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
+    z-index: 2;
+}
+
+.ribbon-bow-green {
+    position: absolute;
+    bottom: 80px;
+    left: -20px;
+    width: 90px;
+    height: 25px;
+    background: #7ca85b;
+    border-radius: 5px;
+    z-index: 4;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.ribbon-bow-green::before, .ribbon-bow-green::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    width: 20px;
+    height: 60px;
+    background: #89b864;
+    z-index: -1;
+}
+.ribbon-bow-green::before { left: 10px; transform: rotate(15deg); }
+.ribbon-bow-green::after { right: 10px; transform: rotate(-15deg); }
+
+.bg-wrap.tulip-wrap {
+    background: #fdebf2;
+    width: 320px; height: 300px;
+    border-radius: 40% 40% 80% 80% / 60% 60% 40% 40%;
+    bottom: 40px;
+    box-shadow: inset 0 0 30px #f8d0dc;
+}
+
+/* Flowers Container */
+.flowers-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 250px;
+    z-index: 4;
+}
+
+/* ================================
+   1. LILY (Lirio)
+   ================================ */
+.bouquet-lirio .flower.lily {
+    position: absolute;
+    width: 100px; height: 100px;
+}
+.lily .petal {
+    position: absolute;
+    width: 35px; height: 85px;
+    background: radial-gradient(ellipse at center, #ffd1dc 0%, #ff69b4 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: 5px; left: 32px;
+    transform-origin: bottom center;
+    box-shadow: inset 0 0 15px rgba(255,255,255,0.5);
+    background-image: radial-gradient(circle, rgba(200,30,80,0.6) 1px, transparent 1px);
+    background-size: 6px 10px;
+}
+.lily .petal::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 16px;
+    width: 3px; height: 100%;
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+}
+.lily .petal:nth-child(1) { transform: rotate(0deg) translateY(-25px); }
+.lily .petal:nth-child(2) { transform: rotate(60deg) translateY(-25px); }
+.lily .petal:nth-child(3) { transform: rotate(120deg) translateY(-25px); }
+.lily .petal:nth-child(4) { transform: rotate(180deg) translateY(-25px); z-index: -1;}
+.lily .petal:nth-child(5) { transform: rotate(240deg) translateY(-25px); z-index: -1;}
+.lily .petal:nth-child(6) { transform: rotate(300deg) translateY(-25px); }
+
+.lily .leaf {
+    position: absolute;
+    width: 18px; height: 80px;
+    background: #3a6833;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    top: 20px; left: 41px;
+    transform-origin: bottom center;
+    z-index: -2;
+}
+.lily .leaf.l1 { transform: rotate(-50deg) translateX(-20px); }
+.lily .leaf.l2 { transform: rotate(50deg) translateX(20px); }
+
+.lily .pistil {
+    position: absolute;
+    width: 3px; height: 45px;
+    background: #efffbe;
+    top: 30px; left: 48px;
+    border-radius: 4px;
+    transform-origin: bottom center;
+}
+.lily .pistil::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: -3px;
+    width: 9px; height: 14px;
+    background: #8e4414; /* Dark orange pollen */
+    border-radius: 50%;
+}
+.lily .pistil.p1 { transform: rotate(25deg); }
+.lily .pistil.p2 { transform: rotate(-15deg); }
+.lily .pistil.p3 { transform: rotate(5deg); height: 50px; }
+
+/* Distribution */
+.bouquet-lirio .lily.f1 { top: 30px; left: 110px; transform: scale(1.3); z-index: 5; }
+.bouquet-lirio .lily.f2 { top: 80px; left: 20px; transform: scale(1.1) rotate(-25deg); z-index: 4; }
+.bouquet-lirio .lily.f3 { top: 70px; right: 20px; transform: scale(1.2) rotate(35deg); z-index: 4; }
+.bouquet-lirio .lily.f4 { top: 130px; left: 60px; transform: scale(0.9) rotate(-10deg); z-index: 6; }
+.bouquet-lirio .lily.f5 { top: 120px; right: 50px; transform: scale(0.9) rotate(20deg); z-index: 6; }
+.bouquet-lirio .lily.f6 { top: 0px; left: 70px; transform: scale(0.8) rotate(-5deg); z-index: 3; }
+
+/* ================================
+   2. MARGARITA (Daisy)
+   ================================ */
+.bouquet-margarita .flower.daisy {
+    position: absolute;
+    width: 60px; height: 60px;
+}
+.daisy .petal {
+    position: absolute;
+    width: 10px; height: 28px;
+    background: #ffffff;
+    border-radius: 20px;
+    top: 5px; left: 25px;
+    transform-origin: bottom center;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+}
+.daisy .petal:nth-child(1) { transform: rotate(0deg) translateY(-12px); }
+.daisy .petal:nth-child(2) { transform: rotate(30deg) translateY(-12px); }
+.daisy .petal:nth-child(3) { transform: rotate(60deg) translateY(-12px); }
+.daisy .petal:nth-child(4) { transform: rotate(90deg) translateY(-12px); }
+.daisy .petal:nth-child(5) { transform: rotate(120deg) translateY(-12px); }
+.daisy .petal:nth-child(6) { transform: rotate(150deg) translateY(-12px); }
+.daisy .petal:nth-child(7) { transform: rotate(180deg) translateY(-12px); }
+.daisy .petal:nth-child(8) { transform: rotate(210deg) translateY(-12px); }
+.daisy .petal:nth-child(9) { transform: rotate(240deg) translateY(-12px); }
+.daisy .petal:nth-child(10) { transform: rotate(270deg) translateY(-12px); }
+.daisy .petal:nth-child(11) { transform: rotate(300deg) translateY(-12px); }
+.daisy .petal:nth-child(12) { transform: rotate(330deg) translateY(-12px); }
+
+.daisy .center {
+    position: absolute;
+    width: 18px; height: 18px;
+    background: radial-gradient(circle, #ffeb3b, #fbc02d);
+    border-radius: 50%;
+    top: 21px; left: 21px;
+    z-index: 2;
+    box-shadow: inset 0 0 6px rgba(200,100,0,0.5);
+}
+
+.bouquet-margarita .daisy {
+    animation: breathe 5s ease-in-out infinite alternate;
+}
+
+/* Distribution (Globe shape) */
+.bouquet-margarita .f1 { top: 20px; left: 130px; transform: scale(1.2); z-index: 5; }
+.bouquet-margarita .f2 { top: 40px; left: 80px; transform: scale(1.1); z-index: 6; }
+.bouquet-margarita .f3 { top: 50px; right: 80px; transform: scale(1.2); z-index: 6; }
+.bouquet-margarita .f4 { top: 80px; left: 40px; transform: scale(1); z-index: 4; }
+.bouquet-margarita .f5 { top: 90px; right: 40px; transform: scale(1); z-index: 4; }
+.bouquet-margarita .f6 { top: 130px; left: 60px; transform: scale(1.1); z-index: 7; }
+.bouquet-margarita .f7 { top: 120px; right: 60px; transform: scale(1.1); z-index: 7; }
+.bouquet-margarita .f8 { top: 150px; left: 110px; transform: scale(1); z-index: 8; }
+.bouquet-margarita .f9 { top: 100px; left: 130px; transform: scale(1.3); z-index: 9; }
+.bouquet-margarita .f10 { top: 0px; left: 100px; transform: scale(0.9); z-index: 2; }
+.bouquet-margarita .f11 { top: 10px; right: 100px; transform: scale(0.9); z-index: 2; }
+.bouquet-margarita .f12 { top: 60px; left: 10px; transform: scale(0.8); z-index: 2; }
+.bouquet-margarita .f13 { top: 70px; right: 10px; transform: scale(0.8); z-index: 2; }
+.bouquet-margarita .f14 { top: 110px; left: 170px; transform: scale(1); z-index: 5; }
+.bouquet-margarita .f15 { top: 150px; right: 110px; transform: scale(1.1); z-index: 8; }
+.bouquet-margarita .f16 { top: 70px; left: 170px; transform: scale(1.2); z-index: 7; }
+
+/* ================================
+   3. GERBERA
+   ================================ */
+.bouquet-gerbera .flower.gerbera {
+    position: absolute;
+    width: 90px; height: 90px;
+}
+.gerbera .petal {
+    position: absolute;
+    width: 12px; height: 45px;
+    background: linear-gradient(to bottom, #ff4500, #ff8c00); /* Orange/Red */
+    border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+    top: 0; left: 39px;
+    transform-origin: bottom center;
+}
+.gerbera .petal.inner {
+    height: 35px;
+    top: 10px;
+    background: linear-gradient(to bottom, #ffa500, #ff1493);
+    z-index: 2;
+}
+
+.gerbera .petal.outer:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(2) { transform: rotate(30deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(3) { transform: rotate(60deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(4) { transform: rotate(90deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(5) { transform: rotate(120deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(6) { transform: rotate(150deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(7) { transform: rotate(180deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(8) { transform: rotate(210deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(9) { transform: rotate(240deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(10) { transform: rotate(270deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(11) { transform: rotate(300deg) translateY(-20px); }
+.gerbera .petal.outer:nth-child(12) { transform: rotate(330deg) translateY(-20px); }
+
+.gerbera .petal.inner:nth-child(13) { transform: rotate(15deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(14) { transform: rotate(45deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(15) { transform: rotate(75deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(16) { transform: rotate(105deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(17) { transform: rotate(135deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(18) { transform: rotate(165deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(19) { transform: rotate(195deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(20) { transform: rotate(225deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(21) { transform: rotate(255deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(22) { transform: rotate(285deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(23) { transform: rotate(315deg) translateY(-15px); }
+.gerbera .petal.inner:nth-child(24) { transform: rotate(345deg) translateY(-15px); }
+
+.gerbera .center {
+    position: absolute;
+    width: 35px; height: 35px;
+    background: radial-gradient(circle, #222, #000); /* Dark center */
+    border-radius: 50%;
+    top: 27px; left: 27px;
+    z-index: 3;
+}
+
+.bouquet-gerbera .gerbera.f1 { top: 20px; left: 115px; transform: scale(1.3); z-index: 5; }
+.bouquet-gerbera .gerbera.f2 { top: 70px; left: 50px; transform: scale(1.1) rotate(-15deg); z-index: 4; }
+.bouquet-gerbera .gerbera.f3 { top: 60px; right: 50px; transform: scale(1.2) rotate(20deg); z-index: 4; }
+.bouquet-gerbera .gerbera.f4 { top: 10px; left: 60px; transform: scale(0.9) rotate(-10deg); z-index: 3; }
+.bouquet-gerbera .gerbera.f5 { top: 20px; right: 50px; transform: scale(1) rotate(10deg); z-index: 2; }
+.bouquet-gerbera .gerbera.f6 { top: 120px; left: 80px; transform: scale(1.2); z-index: 6; }
+.bouquet-gerbera .gerbera.f7 { top: 110px; right: 80px; transform: scale(1.1); z-index: 6; }
+.bouquet-gerbera .gerbera.f8 { top: 60px; left: 160px; transform: scale(1); z-index: 7; }
+
+/* ================================
+   4. JAZMIN (Jasmine) - Light blue/Cyan
+   ================================ */
+.bouquet-jazmin .flower.jasmine {
+    position: absolute;
+    width: 50px; height: 50px;
+}
+.jasmine .petal {
+    position: absolute;
+    width: 20px; height: 28px;
+    background: #e0f2fe; /* Light baby blue */
+    border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+    top: 5px; left: 15px;
+    transform-origin: bottom center;
+    box-shadow: inset 0 0 6px rgb(136, 196, 248);
+}
+.jasmine .petal:nth-child(1) { transform: rotate(0deg) translateY(-8px); }
+.jasmine .petal:nth-child(2) { transform: rotate(72deg) translateY(-8px); }
+.jasmine .petal:nth-child(3) { transform: rotate(144deg) translateY(-8px); }
+.jasmine .petal:nth-child(4) { transform: rotate(216deg) translateY(-8px); }
+.jasmine .petal:nth-child(5) { transform: rotate(288deg) translateY(-8px); }
+
+.jasmine .center {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: radial-gradient(circle, #ffeb3b, #d4e157);
+    border-radius: 50%;
+    top: 20px; left: 20px;
+    z-index: 2;
+}
+
+.bouquet-jazmin .jasmine.f1 { top: 10px; left: 135px; transform: scale(1.4); z-index: 5; }
+.bouquet-jazmin .jasmine.f2 { top: 40px; left: 80px; transform: scale(1.2); z-index: 4; }
+.bouquet-jazmin .jasmine.f3 { top: 50px; right: 80px; transform: scale(1.3); z-index: 4; }
+.bouquet-jazmin .jasmine.f4 { top: 0px; left: 100px; transform: scale(1); z-index: 3; }
+.bouquet-jazmin .jasmine.f5 { top: 10px; right: 90px; transform: scale(0.9); z-index: 3; }
+.bouquet-jazmin .jasmine.f6 { top: 80px; left: 110px; transform: scale(1.3); z-index: 6; }
+.bouquet-jazmin .jasmine.f7 { top: 90px; right: 110px; transform: scale(1.1); z-index: 5; }
+.bouquet-jazmin .jasmine.f8 { top: 130px; left: 140px; transform: scale(1.2); z-index: 7; }
+.bouquet-jazmin .jasmine.f9 { top: 110px; left: 60px; transform: scale(1); z-index: 6; }
+.bouquet-jazmin .jasmine.f10{ top: 120px; right: 60px; transform: scale(1); z-index: 6; }
+.bouquet-jazmin .jasmine.f11{ top: 50px; left: 40px; transform: scale(0.8); z-index: 2; }
+.bouquet-jazmin .jasmine.f12{ top: 60px; right: 40px; transform: scale(0.8); z-index: 2; }
+.bouquet-jazmin .jasmine.f13{ top: 160px; left: 100px; transform: scale(1); z-index: 8; }
+.bouquet-jazmin .jasmine.f14{ top: 70px; left: 170px; transform: scale(1); z-index: 7; }
+
+/* ================================
+   5. TULIPÁN (Tulip)
+   ================================ */
+.bouquet-tulipan .flower.tulip {
+    position: absolute;
+    width: 40px; height: 60px;
+}
+.tulip .petal {
+    position: absolute;
+    width: 25px; height: 50px;
+    background: linear-gradient(135deg, #ffc0cb 0%, #ff69b4 100%);
+    border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+    bottom: 0;
+    box-shadow: inset -2px -2px 6px rgba(0,0,0,0.1);
+}
+.tulip .petal.back { left: 7px; top: 0; background: #ff69b4; z-index: 1; transform: scale(0.9); }
+.tulip .petal.left { left: 0; transform: rotate(-15deg); z-index: 2; }
+.tulip .petal.right { right: 0; transform: rotate(15deg); z-index: 2; }
+.tulip .petal.front { left: 7px; top: 5px; background: linear-gradient(to top, #ff1493, #ffb6c1); z-index: 3; width: 25px; height: 45px; }
+
+.tulip .leaf {
+    position: absolute;
+    width: 20px; height: 75px;
+    background: #6b8e23;
+    border-radius: 50% 0 50% 0;
+    bottom: -30px;
+    z-index: 4;
+}
+.tulip .leaf.left { left: -10px; transform: rotate(-25deg); }
+.tulip .leaf.right { right: -5px; transform: rotate(25deg) scaleX(-1); }
+
+.bouquet-tulipan .tulip.f1 { top: 0px; left: 140px; transform: scale(1.4); z-index: 5; }
+.bouquet-tulipan .tulip.f2 { top: 20px; left: 90px; transform: scale(1.3) rotate(-15deg); z-index: 4; }
+.bouquet-tulipan .tulip.f3 { top: 30px; right: 90px; transform: scale(1.2) rotate(20deg); z-index: 4; }
+.bouquet-tulipan .tulip.f4 { top: 60px; left: 60px; transform: scale(1.3) rotate(-25deg); z-index: 6; }
+.bouquet-tulipan .tulip.f5 { top: 70px; right: 60px; transform: scale(1.2) rotate(25deg); z-index: 5; }
+.bouquet-tulipan .tulip.f6 { top: 60px; left: 120px; transform: scale(1.5); z-index: 7; }
+.bouquet-tulipan .tulip.f7 { top: 70px; right: 120px; transform: scale(1.3) rotate(10deg); z-index: 6; }
+.bouquet-tulipan .tulip.f8 { top: 100px; left: 90px; transform: scale(1.4) rotate(-10deg); z-index: 8; }
+.bouquet-tulipan .tulip.f9 { top: 110px; right: 90px; transform: scale(1.3) rotate(15deg); z-index: 7; }
+.bouquet-tulipan .tulip.f10{ top: 140px; left: 130px; transform: scale(1.4); z-index: 9; }
+.bouquet-tulipan .tulip.f11{ top: 100px; left: 40px; transform: scale(1.2) rotate(-35deg); z-index: 9; }
+.bouquet-tulipan .tulip.f12{ top: 110px; right: 40px; transform: scale(1.1) rotate(35deg); z-index: 8; }
+
+.flower {
+    animation: breathe 4s ease-in-out infinite alternate;
+}
+@keyframes breathe {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.02) translate(0, -2px); }
+}
