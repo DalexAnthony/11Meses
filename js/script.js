@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.next-btn');
     const prevBtn = document.querySelector('.prev-btn');
     const dots = Array.from(document.querySelectorAll('.dot'));
+    const particlesContainer = document.getElementById('particles-container');
 
     let currentIndex = 0;
     let startX = 0;
@@ -336,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <g transform="translate(45, 35)"><animateTransform attributeName="transform" type="scale" values="1;1.07;1" dur="4.5s" repeatCount="indefinite" additive="sum"/><use href="#g-coral" transform="scale(1) rotate(-5)" /></g>
                     <g transform="translate(10, -10)"><animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="3.6s" repeatCount="indefinite" additive="sum"/><use href="#g-darkred" transform="scale(1.15) rotate(10)" /></g>
                 </g>
-            </g>g>
+            </g>
         </svg>
         `;
     }
@@ -782,6 +783,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        if (particlesContainer) {
+            particlesContainer.innerHTML = '';
+        }
+
         // Hide/show arrows
         prevBtn.style.display = currentIndex === 0 ? 'none' : 'flex';
         nextBtn.style.display = currentIndex === slides.length - 1 ? 'none' : 'flex';
@@ -834,15 +839,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Particle system (Petals / Hearts)
-    const particlesContainer = document.getElementById('particles-container');
-
     const petalClasses = ['petal-lirio', 'petal-margarita', 'petal-gerbera', 'petal-jazmin', 'petal-tulipan'];
 
     function createParticle() {
+        if (!particlesContainer) return;
+
         const particle = document.createElement('div');
         particle.classList.add('petal');
 
-        let isHeart = Math.random() > 0.7;
+        // Menos corazones en lirio para que se vean más pétalos del ramo
+        const heartChance = currentIndex === 0 ? 0.88 : 0.7;
+        let isHeart = Math.random() > heartChance;
         let heartIcon = '🤍';
 
         // Último slide son puros corazones
@@ -881,8 +888,52 @@ document.addEventListener('DOMContentLoaded', () => {
             particle.remove();
         }, durationSec * 1000);
     }
-    // Generate particles periodically
-    // setInterval(createParticle, 350); // Temporalmente desactivado a petición
+
+    function spawnParticlesTick() {
+        createParticle();
+        if (currentIndex === 0) {
+            createParticle();
+            if (Math.random() < 0.45) {
+                createParticle();
+            }
+        }
+    }
+
+    const particleIntervalMs = 240;
+    setInterval(spawnParticlesTick, particleIntervalMs);
+
+    const bgMusic = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+
+    function syncMusicButton() {
+        if (!musicBtn || !bgMusic) return;
+        if (!bgMusic.paused) {
+            musicBtn.classList.add('playing');
+            musicBtn.setAttribute('aria-label', 'Pausar música');
+        } else {
+            musicBtn.classList.remove('playing');
+            musicBtn.setAttribute('aria-label', 'Reproducir música');
+        }
+    }
+
+    if (bgMusic) {
+        bgMusic.volume = 0.5;
+        bgMusic.addEventListener('play', syncMusicButton);
+        bgMusic.addEventListener('pause', syncMusicButton);
+        bgMusic.play()
+            .then(syncMusicButton)
+            .catch(syncMusicButton);
+    }
+
+    if (musicBtn && bgMusic) {
+        musicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(() => {});
+            } else {
+                bgMusic.pause();
+            }
+        });
+    }
 
     // Final Slide Heart Explosion Effect
     const finalHeart = document.getElementById('final-heart');

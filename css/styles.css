@@ -235,22 +235,35 @@ body {
     will-change: transform, top, opacity;
 }
 
-/* 0: Lirio (Yellow Vector reference) */
-.petal-lirio {
-    width: 25px;
-    height: 50px;
-    background: radial-gradient(ellipse at center, #ffb114 0%, #ffee90 80%);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    box-shadow: inset 0 0 5px rgba(255, 230, 100, 0.8);
-    position: relative;
+.petal.petal-heart {
+    background: none;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    line-height: 1;
 }
-.petal-lirio::after {
-    content: '';
-    position: absolute;
-    top: 5px; left: 11px;
-    width: 2px; height: 40px;
-    background: #dcb431;
-    border-radius: 2px;
+
+/* 0: Lirio — colores y textura como #petalGrad del ramo (getLilySvg); óvalo suave sin máscara SVG (evita pétalos invisibles / glitches al animar) */
+.petal-lirio {
+    width: 22px;
+    height: 44px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 32% 28%, rgba(128, 28, 16, 0.35) 1px, transparent 2.5px),
+        radial-gradient(circle at 62% 32%, rgba(128, 28, 16, 0.28) 1px, transparent 2.5px),
+        radial-gradient(circle at 48% 40%, rgba(128, 28, 16, 0.22) 1px, transparent 2px),
+        linear-gradient(90deg, transparent 0%, transparent 47%, #dcb431 48%, #dcb431 52%, transparent 53%, transparent 100%) top 14% / 100% 58% no-repeat,
+        radial-gradient(ellipse 100% 115% at 50% 80%,
+            #ffb114 0%,
+            #fadd42 38%,
+            #ffee90 78%,
+            #fff8ce 100%);
+    box-shadow:
+        inset 0 3px 10px rgba(255, 255, 255, 0.55),
+        inset 0 -4px 8px rgba(255, 170, 40, 0.35),
+        0 0 6px rgba(255, 210, 130, 0.45);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* 1: Margarita (White, narrow reference) */
@@ -299,6 +312,39 @@ body {
         transform: translateY(110vh) rotate(360deg) translateX(50px) scale(var(--scale, 1));
         opacity: 0;
     }
+}
+
+/* Música de fondo */
+.music-btn {
+    position: fixed;
+    bottom: 88px;
+    right: 22px;
+    z-index: 20;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #4a4a4a;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.music-btn:hover {
+    background: rgba(255, 255, 255, 0.75);
+    transform: scale(1.06);
+}
+
+.music-btn.playing {
+    color: #c2185b;
+    background: rgba(255, 236, 244, 0.85);
 }
 
 /* Responsive */
